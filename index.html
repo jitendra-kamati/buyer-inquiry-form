@@ -1,132 +1,208 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Impact Sourcing - Buyer Inquiry</title>
-
+  <meta charset="UTF-8">
+  <title>Global Sourcing - Buyer Inquiry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f8;
       margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 520px;
-      margin: 50px auto;
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .form-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.form-row label {
-  width: 30%;
-  margin-top: 0;
-}
-
-.form-row select {
-  width: 70%;
-}
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
+      font-family: 'Inter', 'Open Sans', sans-serif;
+      background: #f4f6f8;
       color: #333;
     }
 
-    label {
-      font-weight: bold;
-      display: block;
-      margin-top: 12px;
-      color: #555;
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
     }
 
-    input, textarea, select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      color: #0b3d91;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    header h2 {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 8px;
+    }
+    header p {
+      font-size: 1rem;
+      color: #666;
+    }
+
+    .form-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 30px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group.full {
+      grid-column: span 2;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #0b3d91;
+    }
+
+    input, select, textarea {
+      padding: 12px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #0b3d91;
+      box-shadow: 0 0 0 3px rgba(11,61,145,0.1);
+      outline: none;
     }
 
     textarea {
       resize: vertical;
-      min-height: 90px;
+      min-height: 100px;
     }
 
-    button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 20px;
-      background-color: #0b5ed7;
-      color: white;
+    .submit-btn {
+      grid-column: span 2;
+      padding: 14px;
+      background: #0b3d91;
+      color: #fff;
       border: none;
-      border-radius: 5px;
-      font-size: 16px;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      transition: background 0.3s, transform 0.2s;
     }
 
-    button:hover {
-      background-color: #084298;
+    .submit-btn:hover {
+      background: #092f70;
+      transform: translateY(-2px);
     }
 
-    .footer {
+    .trust {
+      margin-top: 25px;
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .trust p {
+      margin: 6px 0;
+    }
+    .trust p::before {
+      content: "✔ ";
+      color: #0b3d91;
+      font-weight: bold;
+    }
+
+    footer {
       text-align: center;
-      font-size: 12px;
-      color: #888;
-      margin-top: 15px;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+      .submit-btn {
+        grid-column: span 1;
+      }
     }
   </style>
 </head>
-
 <body>
-
   <div class="container">
-    <h2>Buyer Inquiry Form</h2>
+    <header>
+      <h1>Global Sourcing</h1>
+      <h2>Your Trusted Garment Buying House in India</h2>
+      <p>We help global brands source high-quality apparel and textiles with reliability and transparency.</p>
+    </header>
 
-    <form action="https://your-n8n-instance/webhook/leads" method="POST">
+    <div class="form-card">
+      <form method="POST" action="https://your-n8n-instance/webhook/leads">
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
 
-      <label>Name</label>
-      <input type="text" name="name" required>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required>
+        </div>
 
-      <label>Email</label>
-      <input type="email" name="email" required>
+        <div class="form-group">
+          <label for="company">Company Name</label>
+          <input type="text" id="company" name="company">
+        </div>
 
-      <label>Company</label>
-      <input type="text" name="company" placeholder="Your company name">
+        <div class="form-group">
+          <label for="country">Country</label>
+          <select id="country" name="country">
+            <option value="">Select Country</option>
+            <option value="USA">USA</option>
+            <option value="UK">UK</option>
+            <option value="Germany">Germany</option>
+            <option value="France">France</option>
+          </select>
+        </div>
 
-     <div class="form-row">
-        <label>Product</label>
-        <select name="product">
-          <option value="">Select Product</option>
-          <option>T-Shirts</option>
-          <option>Hoodies</option>
-          <option>Home Textiles</option>
-          <option>Fashion Accessories</option>
-      </select>
+        <div class="form-group">
+          <label for="product">Product</label>
+          <select id="product" name="product">
+            <option value="T-Shirts">T-Shirts</option>
+            <option value="Hoodies">Hoodies</option>
+            <option value="Home Textiles">Home Textiles</option>
+            <option value="Fashion Accessories">Fashion Accessories</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="quantity">Quantity</label>
+          <input type="text" id="quantity" name="quantity" placeholder="e.g. 500 pcs">
+        </div>
+
+        <div class="form-group full">
+          <label for="message">Message</label>
+          <textarea id="message" name="message"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Inquiry</button>
+      </form>
+
+      <div class="trust">
+        <p>Trusted by global buyers</p>
+        <p>Quality assurance & compliance</p>
+        <p>End-to-end sourcing solutions</p>
+      </div>
     </div>
 
-      <label>Quantity</label>
-      <input type="text" name="quantity" placeholder="e.g. 500 pcs">
-
-      <label>Message</label>
-      <textarea name="message" placeholder="Describe your requirement" required></textarea>
-
-      <button type="submit">Submit Inquiry</button>
-
-    </form>
-
-    <div class="footer">
-      We will get back to you within 24 hours.
-    </div>
+    <footer>
+      <p>We will get back to you within 24 hours.</p>
+    </footer>
   </div>
-
 </body>
 </html>
